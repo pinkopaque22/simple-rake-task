@@ -46,6 +46,25 @@ namespace :reports do
 
 
     generate_report(records, headers, report_path) { |record| record }
-    
+
     end
+
+    desc 'Generate aggregate report for user signups and post views'
+    task :aggregate_report =>  :environment do
+      start_date = Time.current.beginning_of_month
+      end_date = Time.current.end_of_month
+
+      signups = User.where(created_at: start_date..end_date)
+      posts = Post.where(created_at: start_date..end_date)
+
+      headers = ['Date', 'User Signups', 'Post views']
+      report_path = Rails.root.join('tmp', 'aggregate_report.csv')
+
+      generate_report(start_date.to_date..end_date.to_date, headers, report_path) do |date|
+        signup_count = signups.where(created_at: date.beginning_of_day..date.end_of_day).count
+        post_views = posts.where(created_at: date.beginning_of_day..date.end_of_day).sum(:views)
+        [date, signup_count, post_views]
+      end
+    end
+
 end
