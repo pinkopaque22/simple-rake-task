@@ -5,7 +5,7 @@ end_date = Time.current.end_of_month.to_date
 
 (start_date..end_date).each do |date|
   users_per_day.times do
-    puts "Creating a user for #{date}}"
+    p "Creating a user for #{date}}"
     User.create!(
       email: Faker::Internet.email,
       password: 'password',
@@ -20,7 +20,7 @@ posts_per_day = 10
 
 (start_date..end_date).each do |date|
   posts_per_day.times do
-    puts "Creating a post for #{date}}"
+    p "Creating a post for #{date}}"
     Post.create!(
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph,
