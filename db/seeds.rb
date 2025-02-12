@@ -1,9 +1,31 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Create a test user
+users_per_day = 5
+start_date = Time.current.beginning_of_month.to_date
+end_date = Time.current.end_of_month.to_date
+
+(start_date..end_date).each do |date|
+  users_per_day.times do
+    puts "Creating a user for #{date}}"
+    User.create!(
+      email: Faker::Internet.email,
+      password: 'password',
+      password_confirmation: 'password',
+      created_at: date.beginning_of_day
+    )
+  end
+end
+
+# Create a test post
+posts_per_day = 10
+
+(start_date..end_date).each do |date|
+  posts_per_day.times do
+    puts "Creating a post for #{date}}"
+    Post.create!(
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph,
+      views: rand(100..1000),
+      created_at: date.beginning_of_day
+    )
+  end
+end
