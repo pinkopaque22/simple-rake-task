@@ -62,8 +62,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'devise', '~> 4.9', '>= 4.9.4'
+gem "devise", "~> 4.9", ">= 4.9.4"
 
-gem 'faker', '~> 3.5', '>= 3.5.1'
+gem "faker", "~> 3.5", ">= 3.5.1"
 
-gem 'csv', '~> 3.3'
+gem "csv", "~> 3.3", ">= 3.3.2"
