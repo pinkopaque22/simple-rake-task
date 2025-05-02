@@ -18,7 +18,8 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
+      - name: Update Brakeman to the latest version
+	run: gem install brakeman
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
