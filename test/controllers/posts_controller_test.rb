@@ -2,6 +2,12 @@ require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    # Create a user with a valid password
+    @user = User.create!(
+      email: "user_#{SecureRandom.hex(4)}@example.com",
+      password: "password123",
+      password_confirmation: "password123"
+    )
     @post = posts(:one)
   end
 
