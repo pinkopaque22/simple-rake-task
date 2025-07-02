@@ -65,6 +65,6 @@ end
 
 gem "devise", "~> 4.9", ">= 4.9.4"
 
-gem "faker", "~> 3.5", ">= 3.5.1"
+gem "faker", "~> 3.5"
 
 gem "csv", "~> 3.3"
